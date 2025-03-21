@@ -9,6 +9,11 @@ const app = express();
 //     res.send("hello, hello , hello ...");
 // })
 app.get("/user",(req,res)=>{
+    console.log(req.query);//{ userid: '101', password: 'testing' }
+    res.send({firstName:"nausad",lastName:"mondal"})
+})
+app.get("/userr/:userid/:name/:password",(req,res)=>{
+    console.log(req.params); //{ userid: '768', name: 'nausad', password: 'testing' }
     res.send({firstName:"nausad",lastName:"mondal"})
 })
 app.post("/user",(req,res)=>{
