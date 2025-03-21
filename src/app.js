@@ -22,9 +22,7 @@ app.delete("/user",(req,res)=>{
 app.use("/test", (req,res)=>{
     res.send("hello from the server")
 })
-// app.use("/",(req,res)=>{
-//     res.send("from dashboard..")
-// })
+
 
 
 app.listen(7777,()=>{
