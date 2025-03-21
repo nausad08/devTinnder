@@ -2,12 +2,7 @@ const express = require("express")
 
 const app = express();
 
-// app.use("/hello/2",(req,res)=>{
-//     res.send("hello, hello , hello ... 2");
-// })
-// app.use("/hello",(req,res)=>{
-//     res.send("hello, hello , hello ...");
-// })
+
 app.get("/user",(req,res)=>{
     console.log(req.query);//{ userid: '101', password: 'testing' }
     res.send({firstName:"nausad",lastName:"mondal"})
