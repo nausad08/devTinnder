@@ -3,25 +3,32 @@ const express = require("express")
 const app = express();
 
 
-app.get("/user",(req,res)=>{
-    console.log(req.query);//{ userid: '101', password: 'testing' }
-    res.send({firstName:"nausad",lastName:"mondal"})
-})
-app.get("/userr/:userid/:name/:password",(req,res)=>{
-    console.log(req.params); //{ userid: '768', name: 'nausad', password: 'testing' }
-    res.send({firstName:"nausad",lastName:"mondal"})
-})
-app.post("/user",(req,res)=>{
-    res.send("data sucessfully saved in the database");
-})
-app.delete("/user",(req,res)=>{
-    res.send("deleted sucessfully...");
-})
+// multiple route handeller
+// *app.use(route,[rH,RH,rH....])
 
+app.use("/user",
+    (req,res,next)=>{
+    console.log("handelling the route user...")
+    // res.send("Response 1 ..")
+    next();
+},
+(req,res,next)=>{
+    console.log("handelling the rouute user 2!! ..")
+    // res.send("Response 2 ..")
+    next();
+},
+(req,res,next)=>{
+    console.log("handelling the rouute user 3!! ..")
+    // res.send("Response 3 ..")
+    next();
+},      
+(req,res,next)=>{
+    console.log("handelling the rouute user 4!! ..")
+    res.send("Response 4 ..")
+    next();
+}
+)
 
-app.use("/test", (req,res)=>{
-    res.send("hello from the server")
-})
 
 
 
