@@ -2,11 +2,13 @@ const express = require("express")
 
 const app = express();
 
-
-// multiple route handeller
-// *app.use(route,[rH,RH,rH....])
-
-app.use("/user",
+app.use("/", (req,res,next)=>{
+    console.log("handelling the route user...")
+    // res.send("handeling / route")
+    next();
+})
+//  al are middlewares
+app.get("/user",
     (req,res,next)=>{
     console.log("handelling the route user...")
     // res.send("Response 1 ..")
@@ -21,7 +23,8 @@ app.use("/user",
     console.log("handelling the rouute user 3!! ..")
     // res.send("Response 3 ..")
     next();
-},      
+}, 
+    //   it is actual
 (req,res,next)=>{
     console.log("handelling the rouute user 4!! ..")
     res.send("Response 4 ..")
