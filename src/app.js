@@ -1,38 +1,30 @@
 const express = require("express")
 
 const app = express();
+const {adminAuth,userAuth} = require("./middlewares/auth")
 
-app.use("/", (req,res,next)=>{
-    console.log("handelling the route user...")
-    // res.send("handeling / route")
-    next();
+app.use("/admin",adminAuth)
+
+app.use("/user/login",(req,res)=>{
+    res.send("user loggin sucesssfullyy..."); // when we call /user, /admin call hobe na 
 })
-//  al are middlewares
-app.get("/user",
-    (req,res,next)=>{
-    console.log("handelling the route user...")
-    // res.send("Response 1 ..")
-    next();
-},
-(req,res,next)=>{
-    console.log("handelling the rouute user 2!! ..")
-    // res.send("Response 2 ..")
-    next();
-},
-(req,res,next)=>{
-    console.log("handelling the rouute user 3!! ..")
-    // res.send("Response 3 ..")
-    next();
-}, 
-    //   it is actual
-(req,res,next)=>{
-    console.log("handelling the rouute user 4!! ..")
-    res.send("Response 4 ..")
-    next();
-}
-)
+
+app.use("/user/data",userAuth,(req,res)=>{
+    res.send("user data send"); // when we call /user, /admin call hobe na 
+})
+app.get("/admin/getAllData",(req,res)=>{
+    res.send("All data sent");
+})
+app.get("/admin/deleteUser",(req,res)=>{
+    res.send("Delete user")
+})
 
 
+app.use("/",(err,req,res,next)=>{
+    if(err){
+        res.status(500).send("somethings went wrong");
+    }
+})
 
 
 app.listen(7777,()=>{
