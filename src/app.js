@@ -5,20 +5,21 @@ const {adminAuth,userAuth} = require("./middlewares/auth")
 
 app.use("/admin",adminAuth)
 
-app.use("/user/login",(req,res)=>{
-    res.send("user loggin sucesssfullyy..."); // when we call /user, /admin call hobe na 
-})
+//*---------------- Error Handeller ---------------------------
 
-app.use("/user/data",userAuth,(req,res)=>{
-    res.send("user data send"); // when we call /user, /admin call hobe na 
-})
-app.get("/admin/getAllData",(req,res)=>{
-    res.send("All data sent");
-})
-app.get("/admin/deleteUser",(req,res)=>{
-    res.send("Delete user")
-})
+app.get("/getUserData",(req,res)=>{
+    throw new Error("jhbdcfh");
+    res.send("user data send");
+    // try{
+    //     // logic to db call and get user data
+    //     throw new Error("jhbdcfh");
+    //     res.send("user data send");
 
+    // }catch(err){
+    //     res.status(500).send("some error contact support");
+
+    // }
+})
 
 app.use("/",(err,req,res,next)=>{
     if(err){
